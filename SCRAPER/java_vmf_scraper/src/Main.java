@@ -10,6 +10,7 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
+        //EACH MONTH NEW VERSION OF JAUNT FRAMEWORK HAST TO BE DOWNLOADED --http://jaunt-api.com/download.htm
         try{
             UserAgent userAgent = new UserAgent();
             userAgent.visit("http://www.ledenbeheer.vmf.be/Publicatie/Klassement?ReeksId=324");
@@ -28,12 +29,6 @@ public class Main {
                 team.setPunten(Integer.parseInt(elementen.get(8).innerHTML().toString().replaceAll("\\r\\n", "").replaceAll(" ", "")));
                 System.out.println(team);
             }
-
-
-
-
-
-
         }
         catch(JauntException e){
             System.err.println(e);

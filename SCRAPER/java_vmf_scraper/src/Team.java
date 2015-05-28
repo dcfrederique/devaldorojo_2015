@@ -1,3 +1,5 @@
+import java.util.Formatter;
+
 /**
  * Created by Frederique on 28-4-2015.
  */
@@ -77,6 +79,13 @@ public class Team {
 
     @Override
     public String toString() {
-        return getNaam() +" " +getGespeeld()+" "+getGewonnen() + " " +getVerloren() +" "+getPunten();
+        StringBuilder stringBuilder = new StringBuilder();
+        Formatter formatter = new Formatter(stringBuilder);
+
+        String template = "%-25s %-15d %-15d %-15d %-15d %-15d %-15d %-15d"; // a rough guess!
+        formatter.format(template, getNaam(), getGespeeld(), getGewonnen(),getVerloren(),
+                getGelijk(),getDoelpuntenvoor(),getDoelpuntentegen(),getPunten());
+        return stringBuilder.toString();
     }
+
 }
