@@ -1,11 +1,8 @@
 package com.frederique.devaldo.activities;
 
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
+import android.graphics.Color;
 import android.support.design.widget.NavigationView;
 import android.os.Bundle;
-
-import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -27,16 +24,21 @@ public class HomeScreenActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
+    private android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+    private HomeScreenActivityFragment homefragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
+        homefragment = new HomeScreenActivityFragment();
+        fragmentTransaction.replace(R.id.frame, homefragment);
+        fragmentTransaction.commit();
+
         String temp = getIntent().getExtras().getString("user");
         String user = temp.substring(0, 1).toUpperCase() +temp.substring(1).toLowerCase() ;
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         navigationView = (NavigationView) findViewById(R.id.navigation_view);
 
         CircleImageView imageView = (CircleImageView)navigationView.findViewById(R.id.profile_image);
@@ -54,25 +56,13 @@ public class HomeScreenActivity extends AppCompatActivity {
             // This method will trigger on item Click of navigation menu
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
-
-
-                //Checking if the item is in checked state or not, if not make it in checked state
                 if (menuItem.isChecked()) menuItem.setChecked(false);
                 else menuItem.setChecked(true);
-
-                //Closing drawer on item click
                 drawerLayout.closeDrawers();
-
-                //Check to see which item was being clicked and perform appropriate action
                 switch (menuItem.getItemId()) {
-
-
                     //Replacing the main content with ContentFragment Which is our Inbox View;
                     case R.id.home:
-                        Toast.makeText(getApplicationContext(), "Inbox Selected", Toast.LENGTH_SHORT).show();
-                        HomeScreenActivityFragment fragment = new HomeScreenActivityFragment();
-                        android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                        fragmentTransaction.replace(R.id.frame, fragment);
+                        fragmentTransaction.replace(R.id.frame, homefragment);
                         fragmentTransaction.commit();
                         return true;
                     default:

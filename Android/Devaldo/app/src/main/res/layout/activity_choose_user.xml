@@ -25,21 +25,25 @@
         android:orientation="horizontal"
         android:gravity="center"
         android:layout_weight="1.5">
+
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/frederique"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:onClick="imageClick"
             android:clickable="true"
+            style="?android:borderlessButtonStyle"
             android:src="@drawable/frederique" />
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/giel"
             android:layout_marginLeft="32dp"
+            style="?android:borderlessButtonStyle"
             android:layout_width="75dp"
             android:onClick="imageClick"
             android:layout_height="75dp"
             android:clickable="true"
-            android:src="@drawable/giel" />
+            android:src="@drawable/giel"
+           />
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/jorg"
             android:layout_marginLeft="32dp"
@@ -47,7 +51,9 @@
             android:layout_height="75dp"
             android:onClick="imageClick"
             android:clickable="true"
-            android:src="@drawable/jorg" />
+            android:src="@drawable/jorg"
+            style="?android:borderlessButtonStyle"
+            />
             </LinearLayout>
     <LinearLayout
         android:layout_width="fill_parent"
@@ -59,11 +65,13 @@
             android:id="@+id/cedric"
             android:layout_width="75dp"
             android:layout_height="75dp"
+            style="?android:borderlessButtonStyle"
             android:onClick="imageClick"
             android:clickable="true"
             android:src="@drawable/cedric" />
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/elias"
+            style="?android:borderlessButtonStyle"
             android:layout_marginLeft="32dp"
             android:layout_width="75dp"
             android:layout_height="75dp"
@@ -83,11 +91,12 @@
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:onClick="imageClick"
-
+            style="?android:borderlessButtonStyle"
             android:clickable="true"
             android:src="@drawable/sven" />
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/jeroen"
+            style="?android:borderlessButtonStyle"
             android:layout_marginLeft="32dp"
             android:layout_width="75dp"
             android:layout_height="75dp"
