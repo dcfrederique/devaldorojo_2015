@@ -31,7 +31,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/drawer_header"
-        app:itemTextColor="@color/colorPrimary"
-        app:itemIconTint="@color/colorPrimary"
+        app:itemTextColor="@color/primary_material_dark"
+        app:itemIconTint="@color/primary_dark_material_light"
         app:menu="@menu/navigation_items" />
 </android.support.v4.widget.DrawerLayout>

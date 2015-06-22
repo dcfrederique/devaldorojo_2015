@@ -1,12 +1,13 @@
 package com.frederique.devaldo.activities;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.frederique.devaldo.R;
@@ -16,9 +17,11 @@ import com.frederique.devaldo.domain.UserData;
 import com.frederique.devaldo.listeners.RecyclerClickListener;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
+
+    private Toolbar toolbar;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
@@ -26,18 +29,21 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_user);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         mRecyclerView= (RecyclerView)findViewById(R.id.recyclerview);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
        final  UserData userDataSet[] = {
-                new UserData("Giel De Bleser","#33b5e5"),
-                new UserData("Jeroen De Winne","#ffbb33"),
-                new UserData("Elias De Vos","#ffbb33"),
-                new UserData("Frederique De Clercq", "#ff4444"),
-                new UserData("Sven De Clercq","#99cc00"),
-                new UserData("Jorg De Clercq","#33b5e5"),
-                new UserData("Cedric De Pauw","#ffbb33"),
-                new UserData("Superfan","#ff4444"),
+                new UserData("Giel De Bleser"),
+                new UserData("Jeroen De Winne"),
+                new UserData("Elias De Vos"),
+                new UserData("Frederique De Clercq"),
+                new UserData("Sven De Clercq"),
+                new UserData("Jorg De Clercq"),
+                new UserData("Cedric De Pauw"),
+                new UserData("Superfan"),
 
 
         };

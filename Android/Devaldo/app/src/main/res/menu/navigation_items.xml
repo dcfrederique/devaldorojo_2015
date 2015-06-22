@@ -1,44 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
+    <group android:id="@+id/group1">
 
         <item
             android:id="@+id/home"
             android:checked="true"
-            android:icon="@android:drawable/ic_menu_add"
+            android:icon="@drawable/ic_home"
             android:title="@string/home" />
-
+    </group>
+    <group android:id="@+id/group2">
         <item
             android:id="@+id/ranking"
             android:checked="false"
-            android:icon="@drawable/logo"
+            android:icon="@drawable/ic_ranking"
             android:title="@string/ranking" />
-
+    </group>
+    <group android:id="@+id/group3">
         <item
             android:id="@+id/calendar"
             android:checked="false"
-            android:icon="@android:drawable/ic_menu_my_calendar"
+            android:icon="@drawable/ic_calendar"
             android:title="@string/calendar" />
-
+    </group>
+    <group android:id="@+id/group4">
         <item
             android:id="@+id/statistics"
             android:checked="false"
-            android:icon="@drawable/logo"
+            android:icon="@drawable/ic_statistics"
             android:title="@string/statistics" />
- <item
+    </group>
+    <group android:id="@+id/group5">
+        <item
             android:id="@+id/finances"
             android:checked="false"
-            android:icon="@drawable/logo"
+            android:icon="@drawable/ic_finances"
             android:title="@string/finances" />
+    </group>
+    <group android:id="@+id/group6">
         <item
             android:id="@+id/settings"
             android:checked="false"
-            android:icon="@drawable/logo"
+            android:icon="@drawable/ic_settings"
             android:title="@string/settings" />
-
-
-
-
+    </group>
+    <group android:id="@+id/group7">
+        <item
+            android:id="@+id/about"
+            android:checked="false"
+            android:icon="@drawable/ic_about"
+            android:title="@string/about" />
     </group>
 </menu>

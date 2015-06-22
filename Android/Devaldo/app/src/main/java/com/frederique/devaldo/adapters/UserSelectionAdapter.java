@@ -13,6 +13,9 @@ import android.widget.TextView;
 
 import com.frederique.devaldo.R;
 import com.frederique.devaldo.domain.UserData;
+import com.squareup.picasso.Picasso;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UserSelectionAdapter extends RecyclerView.Adapter<UserSelectionAdapter.ViewHolder> {
     private UserData[] usersData;
@@ -40,23 +43,27 @@ public class UserSelectionAdapter extends RecyclerView.Adapter<UserSelectionAdap
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
-        Typeface type = Typeface.createFromAsset(context.getAssets(), "fonts/Lobster 1.4.otf");
-        viewHolder.txtViewTitle.setTypeface(type);
+        /*Typeface type = Typeface.createFromAsset(context.getAssets(), "fonts/Lobster 1.4.otf");
+        viewHolder.txtViewTitle.setTypeface(type);*/
         viewHolder.txtViewTitle.setText(usersData[position].getName());
-        GradientDrawable bgShape = (GradientDrawable) viewHolder.circleViewIcon.getBackground();
-        bgShape.setColor(Color.parseColor(usersData[position].getImageUrl()));
+        int resID = context.getResources().getIdentifier(usersData[position].getName().split(" ")[0].toLowerCase(), "drawable", context.getPackageName());
+        //viewHolder.imageView.setImageResource(resID);
+
+        Picasso.with(context).load(resID).error(R.drawable.logo).into(viewHolder.imageView);
+
+
 
     }
     // inner class to hold a reference to each item of RecyclerView 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView txtViewTitle;
-        public View circleViewIcon;
+        public ImageView imageView;
 
         public ViewHolder(View itemLayoutView) {
             super(itemLayoutView);
             txtViewTitle = (TextView) itemLayoutView.findViewById(R.id.USER_name);
-            circleViewIcon = itemLayoutView.findViewById(R.id.USER_circle);
+            imageView = (ImageView) itemLayoutView.findViewById(R.id.profile_image_start);
         }
     }
 

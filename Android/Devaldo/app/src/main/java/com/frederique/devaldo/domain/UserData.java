@@ -5,11 +5,9 @@ package com.frederique.devaldo.domain;
  */
 public class UserData {
     private String name;
-    private String imageUrl;
 
-    public UserData(String name, String imageUrl){
+    public UserData(String name){
         this.name = name;
-        this.imageUrl = imageUrl;
     }
 
     public String getName() {
@@ -20,11 +18,4 @@ public class UserData {
         this.name = name;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
 }

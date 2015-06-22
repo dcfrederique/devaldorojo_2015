@@ -1,8 +1,11 @@
 package com.frederique.devaldo.activities;
 
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.support.design.widget.NavigationView;
 import android.os.Bundle;
 
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +17,8 @@ import android.widget.Toast;
 import com.frederique.devaldo.R;
 
 import com.frederique.devaldo.fragments.HomeScreenActivityFragment;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class HomeScreenActivity extends AppCompatActivity {
@@ -27,17 +32,24 @@ public class HomeScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
-
+        String user = getIntent().getExtras().getString("user");
         // Initializing Toolbar and setting it as the actionbar
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
         //Initializing NavigationView
         navigationView = (NavigationView) findViewById(R.id.navigation_view);
+
+        CircleImageView imageView = (CircleImageView)navigationView.findViewById(R.id.profile_image);
+        int resID = getResources().getIdentifier(user.split(" ")[0].toLowerCase(), "drawable", this.getPackageName());
+        imageView.setImageResource(resID);
+
         TextView textViewUserName = (TextView) navigationView.findViewById(R.id.username);
-        textViewUserName.setText(getIntent().getExtras().getString("user"));
+        textViewUserName.setText(user);
         TextView textViewPosition = (TextView) navigationView.findViewById(R.id.position);
         textViewPosition.setText("Spits/Middenvelder");
+
         //Setting Navigation View Item Selected Listener to handle the item click of the navigation menu
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
 
@@ -89,7 +101,6 @@ public class HomeScreenActivity extends AppCompatActivity {
             }
         };
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
-        //calling sync state is necessay or else your hamburger icon wont show up
         actionBarDrawerToggle.syncState();
 
     }

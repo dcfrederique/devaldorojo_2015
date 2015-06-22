@@ -29,15 +29,15 @@ public class SplashScreenActivity extends Activity {
             public void run() {
                 SharedPreferences prefs = getSharedPreferences("devaldo", Context.MODE_PRIVATE);
                  String s =  prefs.getString("chosenPlayer","not found");
-               if (s.equals("not found")) {
+               //if (s.equals("not found")) {
                     Intent i = new Intent(SplashScreenActivity.this, MainActivity.class);
                     startActivity(i);
-                }
+               /* }
                else{
                     Intent i = new Intent(SplashScreenActivity.this, HomeScreenActivity.class);
                     i.putExtra("user",s);
                     startActivity(i);
-                }
+                }*/
                 finish();
             }
         },TIME_OUT);
