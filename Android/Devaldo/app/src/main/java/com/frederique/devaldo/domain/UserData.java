@@ -2,6 +2,7 @@ package com.frederique.devaldo.domain;
 
 /**
  * Created by Fre on 16/06/2015.
+ * teest
  */
 public class UserData {
     private String name;
