@@ -32,17 +32,15 @@ public class HomeScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
-        String user = getIntent().getExtras().getString("user");
-        // Initializing Toolbar and setting it as the actionbar
+        String temp = getIntent().getExtras().getString("user");
+        String user = temp.substring(0, 1).toUpperCase() +temp.substring(1).toLowerCase() ;
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-        //Initializing NavigationView
         navigationView = (NavigationView) findViewById(R.id.navigation_view);
 
         CircleImageView imageView = (CircleImageView)navigationView.findViewById(R.id.profile_image);
-        int resID = getResources().getIdentifier(user.split(" ")[0].toLowerCase(), "drawable", this.getPackageName());
+        int resID = getResources().getIdentifier(temp, "drawable", this.getPackageName());
         imageView.setImageResource(resID);
 
         TextView textViewUserName = (TextView) navigationView.findViewById(R.id.username);

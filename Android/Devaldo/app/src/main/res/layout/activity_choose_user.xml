@@ -1,17 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar" />
-    <android.support.v7.widget.RecyclerView
-        android:clickable="true"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/recyclerview"
-        />
+    android:background="@color/material_blue_grey_950"
+    android:layout_weight="5">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:paddingLeft="32dp"
+        android:layout_weight="2"
+        android:fontFamily="sans-serif-thin"
+        android:textColor="#ffffff"
+        android:paddingRight="32dp"
+        android:textSize="28sp"
+        android:text="Please select your favorite player"/>
+
+   <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_weight="1.5">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/frederique"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:onClick="imageClick"
+            android:clickable="true"
+            android:src="@drawable/frederique" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/giel"
+            android:layout_marginLeft="32dp"
+            android:layout_width="75dp"
+            android:onClick="imageClick"
+            android:layout_height="75dp"
+            android:clickable="true"
+            android:src="@drawable/giel" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/jorg"
+            android:layout_marginLeft="32dp"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:onClick="imageClick"
+            android:clickable="true"
+            android:src="@drawable/jorg" />
+            </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_weight="1.5">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/cedric"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:onClick="imageClick"
+            android:clickable="true"
+            android:src="@drawable/cedric" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/elias"
+            android:layout_marginLeft="32dp"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:onClick="imageClick"
+            android:clickable="true"
+            android:src="@drawable/elias" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_weight="1.5">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/sven"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:onClick="imageClick"
+
+            android:clickable="true"
+            android:src="@drawable/sven" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/jeroen"
+            android:layout_marginLeft="32dp"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:clickable="true"
+            android:onClick="imageClick"
+            android:src="@drawable/jeroen" />
+    </LinearLayout>
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
 </LinearLayout>

@@ -30,40 +30,27 @@ public class UserSelectionAdapter extends RecyclerView.Adapter<UserSelectionAdap
     @Override
     public UserSelectionAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                    int viewType) {
-        // create a new view
         View itemLayoutView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.choose_user_item_layout, null);
-
-        // create ViewHolder
+                .inflate(R.layout.choose_user_item_layout_2, null);
 
         ViewHolder viewHolder = new ViewHolder(itemLayoutView);
         return viewHolder;
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
-        /*Typeface type = Typeface.createFromAsset(context.getAssets(), "fonts/Lobster 1.4.otf");
-        viewHolder.txtViewTitle.setTypeface(type);*/
-        viewHolder.txtViewTitle.setText(usersData[position].getName());
         int resID = context.getResources().getIdentifier(usersData[position].getName().split(" ")[0].toLowerCase(), "drawable", context.getPackageName());
-        //viewHolder.imageView.setImageResource(resID);
-
         Picasso.with(context).load(resID).error(R.drawable.logo).into(viewHolder.imageView);
-
-
 
     }
     // inner class to hold a reference to each item of RecyclerView 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView txtViewTitle;
-        public ImageView imageView;
+        public CircleImageView imageView;
 
         public ViewHolder(View itemLayoutView) {
             super(itemLayoutView);
-            txtViewTitle = (TextView) itemLayoutView.findViewById(R.id.USER_name);
-            imageView = (ImageView) itemLayoutView.findViewById(R.id.profile_image_start);
+            imageView = (CircleImageView) itemLayoutView.findViewById(R.id.profile_image);
         }
     }
 

@@ -30,4 +30,5 @@
     <string name="action_example">Example action</string>
     <string name="finances">Finances</string>
     <string name="select_player">Select player...</string>
+    <string name="title_activity_app_launch">AppLaunchActivity</string>
 </resources>
