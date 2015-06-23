@@ -8,11 +8,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.frederique.devaldo.R;
+import com.frederique.devaldo.domain.Team;
+import com.frederique.devaldo.domain.managers.ParseManager;
+import com.parse.ParseException;
 
 public class MainActivity extends AppCompatActivity {
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_user);
     }

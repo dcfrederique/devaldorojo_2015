@@ -1,6 +1,5 @@
 package com.frederique.devaldo.activities;
 
-import android.graphics.Color;
 import android.support.design.widget.NavigationView;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -12,15 +11,18 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.frederique.devaldo.R;
-
+import com.frederique.devaldo.domain.Player;
+import com.frederique.devaldo.domain.Team;
+import com.frederique.devaldo.domain.managers.ParseManager;
 import com.frederique.devaldo.fragments.HomeScreenActivityFragment;
+import com.parse.ParseException;
+import com.parse.ParseQuery;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class HomeScreenActivity extends AppCompatActivity {
 
-    //Defining Variables
     private Toolbar toolbar;
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
@@ -31,26 +33,29 @@ public class HomeScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
-        homefragment = new HomeScreenActivityFragment();
-        fragmentTransaction.replace(R.id.frame, homefragment);
-        fragmentTransaction.commit();
-
-        String temp = getIntent().getExtras().getString("user");
-        String user = temp.substring(0, 1).toUpperCase() +temp.substring(1).toLowerCase() ;
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         navigationView = (NavigationView) findViewById(R.id.navigation_view);
-
+        homefragment = new HomeScreenActivityFragment();
+        fragmentTransaction.replace(R.id.frame, homefragment);
+        fragmentTransaction.commit();
+        String temp = getIntent().getExtras().getString("user");
+        ParseQuery<Team> query = ParseQuery.getQuery(Team.class);
+        query.fromLocalDatastore();
+        Team team = null;
+        try {
+            team = query.get("01WLzRUJQl");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Player user = team.searchPlayer(temp);
         CircleImageView imageView = (CircleImageView)navigationView.findViewById(R.id.profile_image);
         int resID = getResources().getIdentifier(temp, "drawable", this.getPackageName());
         imageView.setImageResource(resID);
-
         TextView textViewUserName = (TextView) navigationView.findViewById(R.id.username);
-        textViewUserName.setText(user);
+        textViewUserName.setText(user.getFirstName() + " " + user.getLastName());
         TextView textViewPosition = (TextView) navigationView.findViewById(R.id.position);
-        textViewPosition.setText("Spits/Middenvelder");
-
-        //Setting Navigation View Item Selected Listener to handle the item click of the navigation menu
+        textViewPosition.setText(user.getPosition());
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
 
             // This method will trigger on item Click of navigation menu
@@ -78,13 +83,10 @@ public class HomeScreenActivity extends AppCompatActivity {
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
             @Override
             public void onDrawerClosed(View drawerView) {
-                // Code here will be triggered once the drawer closes as we dont want anything to happen so we leave this blank
                 super.onDrawerClosed(drawerView);
             }
             @Override
             public void onDrawerOpened(View drawerView) {
-                // Code here will be triggered once the drawer open as we dont want anything to happen so we leave this blank
-
                 super.onDrawerOpened(drawerView);
             }
         };
@@ -95,16 +97,10 @@ public class HomeScreenActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

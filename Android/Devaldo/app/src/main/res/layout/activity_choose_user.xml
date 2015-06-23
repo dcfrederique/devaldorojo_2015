@@ -44,7 +44,7 @@
             android:clickable="true"
             android:src="@drawable/giel"
            />
-        <de.hdodenhof.circleimageview.CircleImageView
+         mij goed<de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/jorg"
             android:layout_marginLeft="32dp"
             android:layout_width="75dp"

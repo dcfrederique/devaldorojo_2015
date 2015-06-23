@@ -5,17 +5,19 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Window;
 import android.view.WindowManager;
 
 import com.frederique.devaldo.R;
+import com.frederique.devaldo.domain.managers.ParseManager;
 
 
 public class SplashScreenActivity extends Activity {
-    //SPLASH SCREEN TIMER IN MILLISEC
-    private static int TIME_OUT = 3000;
+    private ParseManager mParseManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,12 +26,20 @@ public class SplashScreenActivity extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash_screen);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                SharedPreferences prefs = getSharedPreferences("devaldo", Context.MODE_PRIVATE);
-                 String s =  prefs.getString("chosenPlayer","not found");
-               //if (s.equals("not found")) {
+        new RemoteTask().execute();
+    }
+    private class RemoteTask extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+                    mParseManager= new ParseManager();
+                    SharedPreferences prefs = getSharedPreferences("devaldo", Context.MODE_PRIVATE);
+                    String s =  prefs.getString("chosenPlayer","not found");
+                    //if (s.equals("not found")) {
                     Intent i = new Intent(SplashScreenActivity.this, MainActivity.class);
                     startActivity(i);
                /* }
@@ -38,8 +48,8 @@ public class SplashScreenActivity extends Activity {
                     i.putExtra("user",s);
                     startActivity(i);
                 }*/
-                finish();
-            }
-        },TIME_OUT);
+            return null;
+        }
     }
+
 }
