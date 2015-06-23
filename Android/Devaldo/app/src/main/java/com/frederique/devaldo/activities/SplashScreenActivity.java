@@ -17,6 +17,7 @@ import com.frederique.devaldo.domain.managers.ParseManager;
 
 public class SplashScreenActivity extends Activity {
     private ParseManager mParseManager;
+    private Context context = this;
 
 
     @Override
@@ -36,7 +37,7 @@ public class SplashScreenActivity extends Activity {
 
         @Override
         protected Void doInBackground(Void... voids) {
-                    mParseManager= new ParseManager();
+                    mParseManager= new ParseManager(context);
                     SharedPreferences prefs = getSharedPreferences("devaldo", Context.MODE_PRIVATE);
                     String s =  prefs.getString("chosenPlayer","not found");
                     //if (s.equals("not found")) {

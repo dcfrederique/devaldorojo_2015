@@ -16,6 +16,7 @@ import java.util.List;
 public class Team extends ParseObject implements Parcelable {
     private String name;
     private List<Player> playerList;
+
     public Team() {
 
     }
@@ -27,8 +28,11 @@ public class Team extends ParseObject implements Parcelable {
     }
 
 
-    public List<Player> getPlayers() {
+    public List<Player> getPlayers(boolean mHaveNetwork) {
         ParseQuery<Player> query = ParseQuery.getQuery("Player");
+        if(!mHaveNetwork){
+            query.fromLocalDatastore();
+        }
         query.include("Team");
         query.whereEqualTo("Team", this);
         try {
