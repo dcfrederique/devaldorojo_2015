@@ -6,18 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.frederique.devaldo.R;
-import com.frederique.devaldo.domain.Calendar;
-import com.frederique.devaldo.domain.Team;
 import com.parse.ParseException;
-import com.parse.ParseObject;
 import com.parse.ParseQuery;
-
+import java.util.Calendar;
 import java.util.List;
 
 public class HomeScreenActivityFragment extends Fragment {
-    private List<Calendar> calendarList;
+    private List<com.frederique.devaldo.domain.Calendar> calendarList;
 
     public HomeScreenActivityFragment() {
     }
@@ -27,7 +23,7 @@ public class HomeScreenActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v =  inflater.inflate(R.layout.fragment_home_screen, container, false);
         try{
-            ParseQuery<Calendar> query  = ParseQuery.getQuery(Calendar.class);
+            ParseQuery<com.frederique.devaldo.domain.Calendar> query  = ParseQuery.getQuery(com.frederique.devaldo.domain.Calendar.class);
             query.fromLocalDatastore();
             query.include("HomeTeam");
             query.include("AwayTeam");
@@ -36,9 +32,15 @@ public class HomeScreenActivityFragment extends Fragment {
         catch (ParseException e){
             e.printStackTrace();
         }
-        Calendar c = calendarList.get(0);
+        com.frederique.devaldo.domain.Calendar c = calendarList.get(0);
         TextView txtMatchInfoTextView = (TextView)v.findViewById(R.id.txtMatchInfo);
         txtMatchInfoTextView.setText(c.getHomeTeam().getName() + " - " + c.getAwayTeam().getName());
+        TextView txtDateTextView = (TextView)v.findViewById(R.id.txtDate);
+        java.util.Calendar cal = java.util.Calendar.getInstance();
+        cal.setTime(c.getDate());
+        int month = cal.get(Calendar.MONTH)+1;
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        txtDateTextView.setText(day + "/" + month);
         return v;
 
     }

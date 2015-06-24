@@ -8,6 +8,8 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.transition.Explode;
+import android.transition.Fade;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -18,8 +20,6 @@ import com.frederique.devaldo.domain.managers.ParseManager;
 public class SplashScreenActivity extends Activity {
     private ParseManager mParseManager;
     private Context context = this;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +29,8 @@ public class SplashScreenActivity extends Activity {
         setContentView(R.layout.activity_splash_screen);
         new RemoteTask().execute();
     }
+
+
     private class RemoteTask extends AsyncTask<Void, Void, Void> {
         @Override
         protected void onPreExecute() {
