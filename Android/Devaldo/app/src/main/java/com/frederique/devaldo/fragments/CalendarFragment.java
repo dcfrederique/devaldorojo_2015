@@ -26,7 +26,7 @@ public class CalendarFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_calendar_screen, container, false);
-       int myInt = getArguments().getInt("pos", 0);
+        int myInt = getArguments().getInt("pos", 0);
         ViewPager pager = (ViewPager) v.findViewById(R.id.pager);
         pager.setAdapter(buildAdapter());
         pager.setCurrentItem(myInt);

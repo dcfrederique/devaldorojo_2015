@@ -30,6 +30,7 @@ public class HomeScreenActivityFragment extends Fragment implements View.OnClick
     private List<com.frederique.devaldo.domain.Calendar> calendarList;
     private TextView txtViewDistance;
     private com.frederique.devaldo.domain.Calendar c;
+    private int position;
 
     public HomeScreenActivityFragment() {
     }
@@ -45,11 +46,17 @@ public class HomeScreenActivityFragment extends Fragment implements View.OnClick
             query.fromLocalDatastore();
             query.include("HomeTeam");
             query.include("AwayTeam");
+            query.orderByAscending("Date");
             calendarList = query.find();
         } catch (ParseException e) {
             e.printStackTrace();
         }
-         c = calendarList.get(0);
+        position = 0;
+        while(calendarList.get(position).getDate().before(Calendar.getInstance().getTime()))
+        {
+          position++;
+        }
+         c = calendarList.get(position);
         TextView txtMatchInfoTextView = (TextView) v.findViewById(R.id.txtMatchInfo);
         txtMatchInfoTextView.setText(c.getHomeTeam().getName() + " - " + c.getAwayTeam().getName());
         TextView txtDateTextView = (TextView) v.findViewById(R.id.txtDate);
@@ -69,7 +76,8 @@ public class HomeScreenActivityFragment extends Fragment implements View.OnClick
     public void onClick(View v) {
         final FragmentTransaction ft = getFragmentManager().beginTransaction();
         Bundle bundle = new Bundle();
-        bundle.putInt("pos", 3);
+        //todo
+        bundle.putInt("pos", position);
         CalendarFragment frag = new CalendarFragment();
         frag.setArguments(bundle);
         ft.replace(R.id.frame, frag);
