@@ -67,7 +67,10 @@ public class HomeScreenActivity extends AppCompatActivity {
                 switch (menuItem.getItemId()) {
                     //Replacing the main content with ContentFragment Which is our Inbox View;
                     case R.id.home:
+                        fragmentTransaction = getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.frame, homefragment);
+                        fragmentTransaction.addToBackStack(null);
+                        getFragmentManager().executePendingTransactions();
                         fragmentTransaction.commit();
                         return true;
                     default:
