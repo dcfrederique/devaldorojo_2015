@@ -1,8 +1,5 @@
 package com.frederique.devaldo.domain;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import com.parse.ParseClassName;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -13,18 +10,12 @@ import java.util.List;
  * Created by frederique on 23.06.15.
  */
 @ParseClassName("Team")
-public class Team extends ParseObject implements Parcelable {
+public class Team extends ParseObject {
     private String name;
     private List<Player> playerList;
 
     public Team() {
 
-    }
-
-    public Team(Parcel in)
-    {
-        this.name = in.readString();
-        this.playerList = in.readArrayList(Player.class.getClassLoader());
     }
 
 
@@ -42,11 +33,13 @@ public class Team extends ParseObject implements Parcelable {
         }
         for (Player p : playerList) {
             p.getFirstName();
-            //p.getTeam();
+            p.getTeam();
+            p.getMatchesOnline();
             p.getLastName();
             p.getNumber();
             p.getPosition();
         }
+
         return playerList;
     }
 
@@ -65,26 +58,4 @@ public class Team extends ParseObject implements Parcelable {
         }
         return searchPlayer;
     }
-    @Override
-    public int describeContents()
-    {
-        return 0;
-    }
-    @Override
-    public void writeToParcel(Parcel dest, int flags)
-    {
-        dest.writeString(name);
-        dest.writeList(playerList);
-    }
-    public static final Parcelable.Creator<Team> CREATOR
-            = new Parcelable.Creator<Team>() {
-        public Team createFromParcel(Parcel in) {
-            return new Team(in);
-        }
-
-        @Override
-        public Team[] newArray(int size) {
-            return new Team[size];
-        }
-    };
 }

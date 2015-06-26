@@ -1,5 +1,7 @@
 package com.frederique.devaldo.activities;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.design.widget.NavigationView;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -39,7 +41,8 @@ public class HomeScreenActivity extends AppCompatActivity {
         homefragment = new HomeScreenActivityFragment();
         fragmentTransaction.replace(R.id.frame, homefragment);
         fragmentTransaction.commit();
-        String temp = getIntent().getExtras().getString("user");
+        SharedPreferences prefs = getSharedPreferences("devaldo", Context.MODE_PRIVATE);
+        String temp =  prefs.getString("chosenPlayer", "not found");
         ParseQuery<Team> query = ParseQuery.getQuery(Team.class);
         query.fromLocalDatastore();
         Team team = null;

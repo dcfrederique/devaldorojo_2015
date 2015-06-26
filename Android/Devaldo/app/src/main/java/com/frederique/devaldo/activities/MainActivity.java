@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         String user =temp.substring(temp.indexOf('/')+1);
         prefs.edit().putString("chosenPlayer", user).apply();
         Intent i = new Intent(MainActivity.this, HomeScreenActivity.class);
-        i.putExtra("user",user);
+        //i.putExtra("user",user);
         startActivity(i);
     }
 }
